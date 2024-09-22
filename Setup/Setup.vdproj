@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_9888456838834E70ACAA07C6572DA260"
+        "MsmKey" = "8:_7AD83678E89C4E12855B0CD97C39CC66"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E712B7EFDB244E8684B40F5B7D701490"
+        "MsmKey" = "8:_9888456838834E70ACAA07C6572DA260"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -88,6 +88,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -118,9 +126,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E712B7EFDB244E8684B40F5B7D701490"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AD83678E89C4E12855B0CD97C39CC66"
             {
-            "SourcePath" = "8:..\\IconMapper\\IconMapper_48.ico"
+            "SourcePath" = "8:..\\IconMapper\\Icon\\IconMapper_48.ico"
             "TargetName" = "8:IconMapper_48.ico"
             "Tag" = "8:"
             "Folder" = "8:_3E07C6C3788148E688578A7367BCEFEC"
@@ -205,15 +213,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IconMapper"
-        "ProductCode" = "8:{94641F63-F575-4830-A2A0-642179F85AD8}"
-        "PackageCode" = "8:{99FC8133-6655-4B05-86F8-52012FFF2E8D}"
+        "ProductCode" = "8:{79AA82CA-4EC5-48F8-8C79-4BEA5F6DAFAD}"
+        "PackageCode" = "8:{F26F7A94-2B03-48D1-A537-78F28485429A}"
         "UpgradeCode" = "8:{E5F3481F-8D81-4A5A-90D3-E73FFA3847A6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:BlazingVx"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -223,7 +231,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_E712B7EFDB244E8684B40F5B7D701490"
+        "ARPPRODUCTICON" = "8:_7AD83678E89C4E12855B0CD97C39CC66"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -326,7 +334,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6FE5E60ED4934EC99097EBAE64B4C447"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5952AF9DA4054098BD32AE696EA62549"
             {
             "Name" = "8:IconMapper"
             "Arguments" = "8:"
@@ -337,10 +345,10 @@
             "Target" = "8:_9888456838834E70ACAA07C6572DA260"
             "Folder" = "8:_80BFB5F511694EBEB234F303B8D4A91C"
             "WorkingFolder" = "8:_3E07C6C3788148E688578A7367BCEFEC"
-            "Icon" = "8:_E712B7EFDB244E8684B40F5B7D701490"
+            "Icon" = "8:_7AD83678E89C4E12855B0CD97C39CC66"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7717D804BFC54BD4A4DB2CD94334C3A3"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A2D4D102DCD845229D4D1749DAA5679C"
             {
             "Name" = "8:IconMapper"
             "Arguments" = "8:"
@@ -351,7 +359,7 @@
             "Target" = "8:_9888456838834E70ACAA07C6572DA260"
             "Folder" = "8:_3861EB3BFCF94D6FAF9F0892616A6072"
             "WorkingFolder" = "8:_3E07C6C3788148E688578A7367BCEFEC"
-            "Icon" = "8:_E712B7EFDB244E8684B40F5B7D701490"
+            "Icon" = "8:_7AD83678E89C4E12855B0CD97C39CC66"
             "Feature" = "8:"
             }
         }

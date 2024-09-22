@@ -11,6 +11,10 @@
 
 - Load and display available drives and folders in a tree view.
 - Select and apply `.ico` files as icons for folders.
+- Preview selected icons before applying them.
+- Import multiple `.ico` files directly into the icon folder.
+- Update the icon folder path through a settings menu.
+- Help and about dialogs for user guidance.
 - Refresh folder view to reflect icon changes immediately.
 
 ## Getting Started
@@ -61,8 +65,12 @@
 
 We plan to introduce the following features in future updates:
 
-- Bulk Icon Update: Ability to apply icons to multiple folders simultaneously.
-- Settings Button: A new settings button to configure application settings directly from the UI, including managing the icon folder path and other preferences.
+- Consider adding a feature for deleting icons from the icon folder.
+- Explore the possibility of adding more icon formats for import.
+
+### Change Log
+
+For a detailed list of changes and updates, please refer to the [Change Log](./docs/ChangeLog.md).
 
 ### Reference
 

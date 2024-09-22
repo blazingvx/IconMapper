@@ -33,16 +33,23 @@
             this.DirectoryFinder = new System.Windows.Forms.GroupBox();
             this.folderTreeView = new System.Windows.Forms.TreeView();
             this.IconBox = new System.Windows.Forms.GroupBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.iconPreviewPictureBox = new System.Windows.Forms.PictureBox();
             this.iconListBox = new System.Windows.Forms.ListBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DirectoryFinder.SuspendLayout();
             this.IconBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // applyIconButton
@@ -64,9 +71,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DirectoryFinder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.DirectoryFinder.Controls.Add(this.folderTreeView);
-            this.DirectoryFinder.Location = new System.Drawing.Point(0, 0);
+            this.DirectoryFinder.Location = new System.Drawing.Point(0, 27);
             this.DirectoryFinder.Name = "DirectoryFinder";
-            this.DirectoryFinder.Size = new System.Drawing.Size(406, 321);
+            this.DirectoryFinder.Size = new System.Drawing.Size(406, 294);
             this.DirectoryFinder.TabIndex = 1;
             this.DirectoryFinder.TabStop = false;
             this.DirectoryFinder.Text = "Directory Finder";
@@ -76,7 +83,7 @@
             this.folderTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.folderTreeView.Location = new System.Drawing.Point(3, 16);
             this.folderTreeView.Name = "folderTreeView";
-            this.folderTreeView.Size = new System.Drawing.Size(400, 302);
+            this.folderTreeView.Size = new System.Drawing.Size(400, 275);
             this.folderTreeView.TabIndex = 0;
             this.folderTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.FolderTreeView_BeforeExpand);
             this.folderTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FolderTreeView_AfterSelect);
@@ -88,31 +95,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IconBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.IconBox.Controls.Add(this.splitContainer1);
-            this.IconBox.Location = new System.Drawing.Point(416, 0);
+            this.IconBox.Location = new System.Drawing.Point(416, 27);
             this.IconBox.Name = "IconBox";
-            this.IconBox.Size = new System.Drawing.Size(418, 321);
+            this.IconBox.Size = new System.Drawing.Size(418, 294);
             this.IconBox.TabIndex = 2;
             this.IconBox.TabStop = false;
             this.IconBox.Text = "IconBox";
-            // 
-            // iconPreviewPictureBox
-            // 
-            this.iconPreviewPictureBox.Location = new System.Drawing.Point(168, 3);
-            this.iconPreviewPictureBox.Name = "iconPreviewPictureBox";
-            this.iconPreviewPictureBox.Size = new System.Drawing.Size(64, 64);
-            this.iconPreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconPreviewPictureBox.TabIndex = 1;
-            this.iconPreviewPictureBox.TabStop = false;
-            // 
-            // iconListBox
-            // 
-            this.iconListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iconListBox.FormattingEnabled = true;
-            this.iconListBox.Location = new System.Drawing.Point(0, 0);
-            this.iconListBox.Name = "iconListBox";
-            this.iconListBox.Size = new System.Drawing.Size(412, 147);
-            this.iconListBox.TabIndex = 0;
-            this.iconListBox.SelectedIndexChanged += new System.EventHandler(this.IconListBox_SelectedIndexChanged);
             // 
             // splitContainer1
             // 
@@ -129,9 +117,79 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.iconListBox);
-            this.splitContainer1.Size = new System.Drawing.Size(412, 302);
+            this.splitContainer1.Size = new System.Drawing.Size(412, 275);
             this.splitContainer1.SplitterDistance = 151;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // iconPreviewPictureBox
+            // 
+            this.iconPreviewPictureBox.Location = new System.Drawing.Point(168, 3);
+            this.iconPreviewPictureBox.Name = "iconPreviewPictureBox";
+            this.iconPreviewPictureBox.Size = new System.Drawing.Size(64, 64);
+            this.iconPreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconPreviewPictureBox.TabIndex = 1;
+            this.iconPreviewPictureBox.TabStop = false;
+            // 
+            // iconListBox
+            // 
+            this.iconListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.iconListBox.FormattingEnabled = true;
+            this.iconListBox.Location = new System.Drawing.Point(0, 0);
+            this.iconListBox.Name = "iconListBox";
+            this.iconListBox.Size = new System.Drawing.Size(412, 120);
+            this.iconListBox.TabIndex = 0;
+            this.iconListBox.SelectedIndexChanged += new System.EventHandler(this.IconListBox_SelectedIndexChanged);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(834, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingToolStripMenuItem,
+            this.importIconsToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // settingToolStripMenuItem
+            // 
+            this.settingToolStripMenuItem.Image = global::IconMapper.Properties.Resources.settings_24dp;
+            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingsMenuItem_Click);
+            // 
+            // importIconsToolStripMenuItem
+            // 
+            this.importIconsToolStripMenuItem.Image = global::IconMapper.Properties.Resources.upload_24dp;
+            this.importIconsToolStripMenuItem.Name = "importIconsToolStripMenuItem";
+            this.importIconsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importIconsToolStripMenuItem.Text = "Import Icons";
+            this.importIconsToolStripMenuItem.Click += new System.EventHandler(this.ImportMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // MainForm
             // 
@@ -143,17 +201,22 @@
             this.Controls.Add(this.IconBox);
             this.Controls.Add(this.DirectoryFinder);
             this.Controls.Add(this.applyIconButton);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Icon Mapper";
             this.DirectoryFinder.ResumeLayout(false);
             this.IconBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -166,6 +229,12 @@
         private System.Windows.Forms.ListBox iconListBox;
         private System.Windows.Forms.PictureBox iconPreviewPictureBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importIconsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         
 
 

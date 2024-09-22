@@ -301,5 +301,92 @@ catch {
             // Recenter the PictureBox when the form is resized
             CenterPictureBox();
         }
+
+        /// <summary>
+        /// Event handler for Logic to set the icon folder path and update app.config
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SettingsMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedPath = folderDialog.SelectedPath;
+                    // Update app.config with the new path
+                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    config.AppSettings.Settings["IconFolderPath"].Value = selectedPath;
+                    config.Save(ConfigurationSaveMode.Modified);
+                    ConfigurationManager.RefreshSection("appSettings");
+                    MessageBox.Show("Icon folder path updated successfully.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for Logic to import .ico files.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "ICO Files (*.ico)|*.ico";
+                openFileDialog.Title = "Select Icon Files";
+                openFileDialog.Multiselect = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string iconFolderPath = ConfigurationManager.AppSettings["IconFolderPath"];
+
+                    // Copy selected files to the icon folder
+                    foreach (var file in openFileDialog.FileNames)
+                    {
+                        string fileName = Path.GetFileName(file);
+                        string destinationPath = Path.Combine(iconFolderPath, fileName);
+                        File.Copy(file, destinationPath, true); // Overwrite if exists
+                    }
+
+                    MessageBox.Show("Icons imported successfully.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for Help menu item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HelpMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Help Information:\n\n" +
+                            "1. Use the 'File' menu to access settings and import icons.\n" +
+                            "2. Select a drive from the Directory Finder to navigate folders.\n" +
+                            "3. Use the Icon Box to select icons from the configured folder.\n" +
+                            "4. Click 'Apply Icon' to apply the selected icon to the chosen folder.\n\n" +
+                            "For further assistance, contact support.",
+                            "Help",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Event handler for About menu item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AboutMenuItem_Click(object sender, EventArgs e)
+        {
+            // Display About dialog
+            MessageBox.Show("Icon Mapper v1.1.0\n\n" +
+                            "This application allows you to apply custom icons to folders. " +
+                            "You can select icon files, preview them, and manage icon settings.\n\n" +
+                            "Developed by Vedant Sood",
+                            "About Icon Mapper",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
     }
 }
