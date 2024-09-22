@@ -33,9 +33,16 @@
             this.DirectoryFinder = new System.Windows.Forms.GroupBox();
             this.folderTreeView = new System.Windows.Forms.TreeView();
             this.IconBox = new System.Windows.Forms.GroupBox();
+            this.iconPreviewPictureBox = new System.Windows.Forms.PictureBox();
             this.iconListBox = new System.Windows.Forms.ListBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.DirectoryFinder.SuspendLayout();
             this.IconBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // applyIconButton
@@ -80,7 +87,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IconBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.IconBox.Controls.Add(this.iconListBox);
+            this.IconBox.Controls.Add(this.splitContainer1);
             this.IconBox.Location = new System.Drawing.Point(416, 0);
             this.IconBox.Name = "IconBox";
             this.IconBox.Size = new System.Drawing.Size(418, 321);
@@ -88,15 +95,43 @@
             this.IconBox.TabStop = false;
             this.IconBox.Text = "IconBox";
             // 
+            // iconPreviewPictureBox
+            // 
+            this.iconPreviewPictureBox.Location = new System.Drawing.Point(168, 3);
+            this.iconPreviewPictureBox.Name = "iconPreviewPictureBox";
+            this.iconPreviewPictureBox.Size = new System.Drawing.Size(64, 64);
+            this.iconPreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconPreviewPictureBox.TabIndex = 1;
+            this.iconPreviewPictureBox.TabStop = false;
+            // 
             // iconListBox
             // 
             this.iconListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.iconListBox.FormattingEnabled = true;
-            this.iconListBox.Location = new System.Drawing.Point(3, 16);
+            this.iconListBox.Location = new System.Drawing.Point(0, 0);
             this.iconListBox.Name = "iconListBox";
-            this.iconListBox.Size = new System.Drawing.Size(412, 302);
+            this.iconListBox.Size = new System.Drawing.Size(412, 147);
             this.iconListBox.TabIndex = 0;
             this.iconListBox.SelectedIndexChanged += new System.EventHandler(this.IconListBox_SelectedIndexChanged);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.iconPreviewPictureBox);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.iconListBox);
+            this.splitContainer1.Size = new System.Drawing.Size(412, 302);
+            this.splitContainer1.SplitterDistance = 151;
+            this.splitContainer1.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -113,6 +148,11 @@
             this.Text = "Icon Mapper";
             this.DirectoryFinder.ResumeLayout(false);
             this.IconBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPreviewPictureBox)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -124,6 +164,11 @@
         private System.Windows.Forms.TreeView folderTreeView;
         private System.Windows.Forms.GroupBox IconBox;
         private System.Windows.Forms.ListBox iconListBox;
+        private System.Windows.Forms.PictureBox iconPreviewPictureBox;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        
+
+
     }
 }
 

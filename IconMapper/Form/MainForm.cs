@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Drawing;
 
 namespace IconMapper
 {
@@ -258,7 +259,47 @@ catch {
             if (iconListBox.SelectedItem != null)
             {
                 selectedIconPath = iconListBox.SelectedItem.ToString();
+
+                // Load and preview the icon
+                try
+                {
+                    using (System.Drawing.Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(selectedIconPath))
+                    {
+                        iconPreviewPictureBox.Image = icon.ToBitmap();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading icon preview: " + ex.Message);
+                    iconPreviewPictureBox.Image = null; // Clear the preview on error
+                }
             }
+            else
+            {
+                iconPreviewPictureBox.Image = null; // Clear the preview if no icon is selected
+            }
+        }
+
+        /// <summary>
+        /// Recentre preview box.
+        /// </summary>
+        private void CenterPictureBox()
+        {
+            // Center the PictureBox in the form
+            iconPreviewPictureBox.Location = new Point(
+                (this.splitContainer1.Panel1.Width - iconPreviewPictureBox.Width) / 2,
+                (this.splitContainer1.Panel1.Height - iconPreviewPictureBox.Height) / 2);
+        }
+
+        /// <summary>
+        /// Event handler for Center Picture Box.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            // Recenter the PictureBox when the form is resized
+            CenterPictureBox();
         }
     }
 }
