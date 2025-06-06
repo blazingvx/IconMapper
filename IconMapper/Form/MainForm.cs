@@ -20,7 +20,8 @@ namespace IconMapper
         public MainForm()
         {
             InitializeComponent();
-            themeselected = Theme.Light;
+            themeselected = (Theme)Convert.ToInt32(ConfigurationManager.AppSettings["LastTheme"]);
+            setTheme(themeselected);
             LoadDrives();
             LoadIcons();
         }
@@ -387,17 +388,16 @@ catch {
         /// <param name="e"></param>
         private void SettingsMenuItem_Click(object sender, EventArgs e)
         {
+            string selectedPath = string.Empty;
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedPath = folderDialog.SelectedPath;
-                    // Update app.config with the new path
-                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    config.AppSettings.Settings["IconFolderPath"].Value = selectedPath;
-                    config.Save(ConfigurationSaveMode.Modified);
-                    ConfigurationManager.RefreshSection("appSettings");
-                    MessageBox.Show("Icon folder path updated successfully.");
+                    selectedPath = folderDialog.SelectedPath;
+
+                    if (UpdateConfig("IconFolderPath", selectedPath))
+                        MessageBox.Show("Icon folder path updated successfully.");
+
                 }
             }
         }
@@ -474,10 +474,49 @@ catch {
         /// <param name="e"></param>
         private void changeThemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            themeselected = themeselected == Theme.Light ? Theme.Dark : Theme.Light;
+            setTheme(themeselected);
+
+            UpdateConfig("LastTheme", Convert.ToString(Convert.ToInt32(themeselected)));
+
+        }
+
+        /// <summary>
+        /// Set Theme for the Application
+        /// </summary>
+        /// <param name="theme"></param>
+        private void SetApplicationTheme(Theme theme)
+        {
             if (themeselected == Theme.Light)
-                DarkTheme();
-            else
                 LightTheme();
+            else
+                DarkTheme();
+        }
+        
+        /// <summary>
+        /// Update Cofig File
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        private bool UpdateConfig(string key, string value, string section = "appSettings")
+        {
+            bool retValue = false;
+            try
+            {
+                // Update app.config with the new path
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings[key].Value = value;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(section);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return retValue;
         }
     }
 }
