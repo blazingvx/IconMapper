@@ -11,13 +11,84 @@ namespace IconMapper
     public partial class MainForm : Form
     {
         private string selectedIconPath;
+        private enum Theme { Light, Dark };
+        Theme themeselected = Theme.Light;
 
+        /// <summary>
+        /// Main Form
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            themeselected = Theme.Light;
             LoadDrives();
             LoadIcons();
         }
+
+        /// <summary>
+        /// Dark Theme
+        /// </summary>
+        private void DarkTheme()
+        {
+            // Background and Foreground
+            this.BackColor = Color.FromArgb(30, 30, 30); // Dark theme
+            this.ForeColor = Color.White;
+
+            // TreeView Styling
+            folderTreeView.BackColor = Color.FromArgb(45, 45, 48);
+            folderTreeView.ForeColor = Color.White;
+            folderTreeView.BorderStyle = BorderStyle.FixedSingle;
+
+            // ListBox Styling
+            iconListBox.BackColor = Color.FromArgb(40, 40, 42);
+            iconListBox.ForeColor = Color.LightGreen;
+            iconListBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // PictureBox Styling (border if needed)
+            iconPreviewPictureBox.BackColor = Color.FromArgb(50, 50, 50);
+            iconPreviewPictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // Apply Button Styling (if you use a button called applyIconButton)
+            applyIconButton.BackColor = Color.FromArgb(70, 130, 180); // SteelBlue
+            applyIconButton.ForeColor = Color.White;
+            applyIconButton.FlatStyle = FlatStyle.Flat;
+            applyIconButton.FlatAppearance.BorderColor = Color.White;
+            applyIconButton.FlatAppearance.BorderSize = 1;
+
+            DirectoryFinder.ForeColor = Color.White;
+            IconBox.ForeColor = Color.White;
+
+            themeselected = Theme.Dark;
+        }
+
+        /// <summary>
+        /// Light Theme (Default)
+        /// </summary>
+        private void LightTheme()
+        {
+            // Standard Theme
+            //this.DoubleBuffered = true;
+            DirectoryFinder.ForeColor = Color.Black;
+            IconBox.ForeColor = Color.Black;
+
+            this.ForeColor = SystemColors.ControlText;
+            this.BackColor = SystemColors.Control;
+
+            folderTreeView.ForeColor = SystemColors.ControlText;
+            folderTreeView.BackColor = SystemColors.Control;
+
+            applyIconButton.ForeColor = SystemColors.ControlText;
+            applyIconButton.BackColor = SystemColors.Control;
+
+            iconListBox.ForeColor = SystemColors.ControlText;
+            iconListBox.BackColor = SystemColors.Control;
+
+            iconPreviewPictureBox.BackColor = SystemColors.Control;
+            iconPreviewPictureBox.BorderStyle = BorderStyle.None;
+
+            themeselected = Theme.Light;
+        }
+
 
         /// <summary>
         /// Loads the available drives and adds them to the TreeView.
@@ -248,6 +319,13 @@ catch {
             SHChangeNotify(SHCNE_UPDATEDIR, SHCNF_FLUSH, IntPtr.Zero, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// Folder Refresh
+        /// </summary>
+        /// <param name="wEventId"></param>
+        /// <param name="uFlags"></param>
+        /// <param name="dwItem1"></param>
+        /// <param name="dwItem2"></param>
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         private static extern void SHChangeNotify(int wEventId, int uFlags, IntPtr dwItem1, IntPtr dwItem2);
 
@@ -387,6 +465,19 @@ catch {
                             "About Icon Mapper",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Change Theme from Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void changeThemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (themeselected == Theme.Light)
+                DarkTheme();
+            else
+                LightTheme();
         }
     }
 }
