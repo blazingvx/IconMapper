@@ -5,6 +5,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace IconMapper
 {
@@ -21,7 +24,7 @@ namespace IconMapper
         {
             InitializeComponent();
             themeselected = (Theme)Convert.ToInt32(ConfigurationManager.AppSettings["LastTheme"]);
-            setTheme(themeselected);
+            SetApplicationTheme(themeselected);
             LoadDrives();
             LoadIcons();
         }
@@ -89,7 +92,6 @@ namespace IconMapper
 
             themeselected = Theme.Light;
         }
-
 
         /// <summary>
         /// Loads the available drives and adds them to the TreeView.
@@ -458,13 +460,8 @@ catch {
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
             // Display About dialog
-            MessageBox.Show("Icon Mapper v1.1.0\n\n" +
-                            "This application allows you to apply custom icons to folders. " +
-                            "You can select icon files, preview them, and manage icon settings.\n\n" +
-                            "Developed by Vedant Sood",
-                            "About Icon Mapper",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+            var about = new AboutForm();
+            about.ShowDialog();
         }
 
         /// <summary>
@@ -475,7 +472,7 @@ catch {
         private void changeThemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             themeselected = themeselected == Theme.Light ? Theme.Dark : Theme.Light;
-            setTheme(themeselected);
+            SetApplicationTheme(themeselected);
 
             UpdateConfig("LastTheme", Convert.ToString(Convert.ToInt32(themeselected)));
 
@@ -492,7 +489,7 @@ catch {
             else
                 DarkTheme();
         }
-        
+
         /// <summary>
         /// Update Cofig File
         /// </summary>
@@ -513,7 +510,7 @@ catch {
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error :: " + ex.Message + " at " + ex.StackTrace, "Icon Mapper", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return retValue;

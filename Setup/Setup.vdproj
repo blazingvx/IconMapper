@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_5D1BDD8801734D27BAAB849AE56874C7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7AD83678E89C4E12855B0CD97C39CC66"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -126,6 +132,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D1BDD8801734D27BAAB849AE56874C7"
+            {
+            "SourcePath" = "8:..\\docs\\ChangeLog.md"
+            "TargetName" = "8:ChangeLog.md"
+            "Tag" = "8:"
+            "Folder" = "8:_3E07C6C3788148E688578A7367BCEFEC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AD83678E89C4E12855B0CD97C39CC66"
             {
             "SourcePath" = "8:..\\IconMapper\\Icon\\IconMapper_48.ico"
