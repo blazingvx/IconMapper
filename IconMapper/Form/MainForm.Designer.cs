@@ -40,6 +40,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DirectoryFinder.SuspendLayout();
@@ -156,7 +157,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingToolStripMenuItem,
-            this.importIconsToolStripMenuItem});
+            this.importIconsToolStripMenuItem,
+            this.changeThemeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -165,7 +167,7 @@
             // 
             this.settingToolStripMenuItem.Image = global::IconMapper.Properties.Resources.settings_24dp;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.settingToolStripMenuItem.Text = "Setting";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingsMenuItem_Click);
             // 
@@ -173,9 +175,17 @@
             // 
             this.importIconsToolStripMenuItem.Image = global::IconMapper.Properties.Resources.upload_24dp;
             this.importIconsToolStripMenuItem.Name = "importIconsToolStripMenuItem";
-            this.importIconsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importIconsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.importIconsToolStripMenuItem.Text = "Import Icons";
             this.importIconsToolStripMenuItem.Click += new System.EventHandler(this.ImportMenuItem_Click);
+            // 
+            // changeThemeToolStripMenuItem
+            // 
+            this.changeThemeToolStripMenuItem.Image = global::IconMapper.Properties.Resources.themes;
+            this.changeThemeToolStripMenuItem.Name = "changeThemeToolStripMenuItem";
+            this.changeThemeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.changeThemeToolStripMenuItem.Text = "Change Theme";
+            this.changeThemeToolStripMenuItem.Click += new System.EventHandler(this.changeThemeToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -197,6 +207,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(834, 361);
             this.Controls.Add(this.IconBox);
             this.Controls.Add(this.DirectoryFinder);
@@ -235,6 +246,7 @@
         private System.Windows.Forms.ToolStripMenuItem importIconsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeThemeToolStripMenuItem;
         
 
 

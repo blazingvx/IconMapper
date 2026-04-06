@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextMenuOptions.cs" />
     <Compile Include="Helper\ConfigHelper.cs" />
     <Compile Include="Form\MainForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +101,7 @@
   <ItemGroup>
     <Content Include="Icon\IconMapper.ico" />
     <Content Include="Icon\IconMapper_48.ico" />
+    <None Include="Icon\themes.png" />
     <None Include="Icon\upload_24dp.png" />
     <None Include="Icon\settings_24dp.png" />
   </ItemGroup>

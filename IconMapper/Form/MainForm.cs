@@ -11,13 +11,85 @@ namespace IconMapper
     public partial class MainForm : Form
     {
         private string selectedIconPath;
+        private enum Theme { Light, Dark };
+        Theme themeselected = Theme.Light;
 
+        /// <summary>
+        /// Main Form
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            themeselected = (Theme)Convert.ToInt32(ConfigurationManager.AppSettings["LastTheme"]);
+            setTheme(themeselected);
             LoadDrives();
             LoadIcons();
         }
+
+        /// <summary>
+        /// Dark Theme
+        /// </summary>
+        private void DarkTheme()
+        {
+            // Background and Foreground
+            this.BackColor = Color.FromArgb(30, 30, 30); // Dark theme
+            this.ForeColor = Color.White;
+
+            // TreeView Styling
+            folderTreeView.BackColor = Color.FromArgb(45, 45, 48);
+            folderTreeView.ForeColor = Color.White;
+            folderTreeView.BorderStyle = BorderStyle.FixedSingle;
+
+            // ListBox Styling
+            iconListBox.BackColor = Color.FromArgb(40, 40, 42);
+            iconListBox.ForeColor = Color.LightGreen;
+            iconListBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // PictureBox Styling (border if needed)
+            iconPreviewPictureBox.BackColor = Color.FromArgb(50, 50, 50);
+            iconPreviewPictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+            // Apply Button Styling (if you use a button called applyIconButton)
+            applyIconButton.BackColor = Color.FromArgb(70, 130, 180); // SteelBlue
+            applyIconButton.ForeColor = Color.White;
+            applyIconButton.FlatStyle = FlatStyle.Flat;
+            applyIconButton.FlatAppearance.BorderColor = Color.White;
+            applyIconButton.FlatAppearance.BorderSize = 1;
+
+            DirectoryFinder.ForeColor = Color.White;
+            IconBox.ForeColor = Color.White;
+
+            themeselected = Theme.Dark;
+        }
+
+        /// <summary>
+        /// Light Theme (Default)
+        /// </summary>
+        private void LightTheme()
+        {
+            // Standard Theme
+            //this.DoubleBuffered = true;
+            DirectoryFinder.ForeColor = Color.Black;
+            IconBox.ForeColor = Color.Black;
+
+            this.ForeColor = SystemColors.ControlText;
+            this.BackColor = SystemColors.Control;
+
+            folderTreeView.ForeColor = SystemColors.ControlText;
+            folderTreeView.BackColor = SystemColors.Control;
+
+            applyIconButton.ForeColor = SystemColors.ControlText;
+            applyIconButton.BackColor = SystemColors.Control;
+
+            iconListBox.ForeColor = SystemColors.ControlText;
+            iconListBox.BackColor = SystemColors.Control;
+
+            iconPreviewPictureBox.BackColor = SystemColors.Control;
+            iconPreviewPictureBox.BorderStyle = BorderStyle.None;
+
+            themeselected = Theme.Light;
+        }
+
 
         /// <summary>
         /// Loads the available drives and adds them to the TreeView.
@@ -248,6 +320,13 @@ catch {
             SHChangeNotify(SHCNE_UPDATEDIR, SHCNF_FLUSH, IntPtr.Zero, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// Folder Refresh
+        /// </summary>
+        /// <param name="wEventId"></param>
+        /// <param name="uFlags"></param>
+        /// <param name="dwItem1"></param>
+        /// <param name="dwItem2"></param>
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         private static extern void SHChangeNotify(int wEventId, int uFlags, IntPtr dwItem1, IntPtr dwItem2);
 
@@ -309,17 +388,16 @@ catch {
         /// <param name="e"></param>
         private void SettingsMenuItem_Click(object sender, EventArgs e)
         {
+            string selectedPath = string.Empty;
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedPath = folderDialog.SelectedPath;
-                    // Update app.config with the new path
-                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    config.AppSettings.Settings["IconFolderPath"].Value = selectedPath;
-                    config.Save(ConfigurationSaveMode.Modified);
-                    ConfigurationManager.RefreshSection("appSettings");
-                    MessageBox.Show("Icon folder path updated successfully.");
+                    selectedPath = folderDialog.SelectedPath;
+
+                    if (UpdateConfig("IconFolderPath", selectedPath))
+                        MessageBox.Show("Icon folder path updated successfully.");
+
                 }
             }
         }
@@ -387,6 +465,58 @@ catch {
                             "About Icon Mapper",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Change Theme from Menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void changeThemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            themeselected = themeselected == Theme.Light ? Theme.Dark : Theme.Light;
+            setTheme(themeselected);
+
+            UpdateConfig("LastTheme", Convert.ToString(Convert.ToInt32(themeselected)));
+
+        }
+
+        /// <summary>
+        /// Set Theme for the Application
+        /// </summary>
+        /// <param name="theme"></param>
+        private void SetApplicationTheme(Theme theme)
+        {
+            if (themeselected == Theme.Light)
+                LightTheme();
+            else
+                DarkTheme();
+        }
+        
+        /// <summary>
+        /// Update Cofig File
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        private bool UpdateConfig(string key, string value, string section = "appSettings")
+        {
+            bool retValue = false;
+            try
+            {
+                // Update app.config with the new path
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings[key].Value = value;
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(section);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return retValue;
         }
     }
 }
