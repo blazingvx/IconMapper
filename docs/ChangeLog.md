@@ -1,5 +1,15 @@
 # Change Log
 
+## Version 1.1.1
+- **Enhancements and New Features**
+  - **Theme Support**: Introduced the ability to change application themes. Users can now switch between light and dark modes from the settings menu, providing a more personalized and visually comfortable experience.
+
+### Key Changes
+  - Added theme management logic with support for persisting user preferences across sessions.
+  - Updated UI elements to dynamically reflect selected theme without restarting the application.
+
+
+
 ## Version 1.1.0
 - **Enhancements and New Features**
   - **Icon Preview**: Added functionality to preview the selected icon in a `PictureBox` when an icon is selected from the `ListBox`.
