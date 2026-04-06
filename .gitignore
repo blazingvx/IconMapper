@@ -15,6 +15,7 @@ x86/
 bin/
 obj/
 out/
+.vs
 
 ## NuGet
 *.nupkg
